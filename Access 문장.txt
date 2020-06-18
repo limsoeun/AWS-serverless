@@ -1,0 +1,17 @@
+{'Access-Control-Allow-Origin': '*'}
+
+export.lambda_handler = async (event, context, callback) => {
+    const operation = event.httpMethod;
+    switch (operation) {
+        case 'GET':
+            let data = {
+                "id": 1
+            }
+            callback(null, {
+                'headers': {'Access-Control-Allow-Origin': '*'},
+                'body': JSON.stringify(data)
+            });
+        default:
+                callback(new Error('Operation Error "$(operation)"'))
+        }
+};
